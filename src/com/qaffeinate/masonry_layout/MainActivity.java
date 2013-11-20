@@ -14,7 +14,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.AbsListView.OnScrollListener;
 
 public class MainActivity extends Activity {
 	
@@ -22,7 +24,8 @@ public class MainActivity extends Activity {
 	private ListView right_list;
 	private List_adapter leftAdapter;
 	private List_adapter rightAdapter;
-
+	private ArrayList<String> left;
+	private ArrayList<String> right;
 	int[] leftViewsHeights;
 	int[] rightViewsHeights;
 	 ArrayList<String> url_array;
@@ -36,6 +39,8 @@ public class MainActivity extends Activity {
 		json_stuff();				
 		load_cdn();		
 		left_list.setOnTouchListener(touchListener);
+		left_list.setOnScrollListener(scrollListener);
+
 		right_list.setOnTouchListener(touchListener);		
   	}
 	
@@ -58,7 +63,33 @@ public class MainActivity extends Activity {
 		}
 	};
 	
- 
+OnScrollListener scrollListener = new OnScrollListener() {
+		
+		@Override
+		public void onScrollStateChanged(AbsListView v, int scrollState) {	
+		}
+		
+		@Override
+		public void onScroll(AbsListView view, int firstVisibleItem,
+				int visibleItemCount, int totalItemCount) {
+			
+			if( (right_list.getLastVisiblePosition() == right_list.getAdapter().getCount() -1 &&
+					right_list.getChildAt(right_list.getChildCount() - 1).getBottom() <= right_list.getHeight())
+					||left_list.getLastVisiblePosition() == left_list.getAdapter().getCount() -1 &&
+							left_list.getChildAt(left_list.getChildCount() - 1).getBottom() <= left_list.getHeight())
+				{
+				Log.i("its the end","hola");
+				
+			    left.addAll(left);
+				right.addAll(right);
+ 				leftAdapter.notifyDataSetChanged();		
+  				rightAdapter.notifyDataSetChanged();		
+
+  					}
+				
+				 
+		}
+	};
 
 	private void json_stuff(){
 		url_array= new ArrayList<String>();
@@ -80,7 +111,8 @@ public class MainActivity extends Activity {
 	 			JSONObject obj3 =obj2.getJSONObject("productDetails");
 	 			JSONObject obj4 =obj3.getJSONObject("imageDetails");
 	 			String key =obj4.getString("cdnKeyWebList");
-	 			url_array.add(key);
+  	 			url_array.add(key);
+	 		 
 
 			}
  			
@@ -95,8 +127,8 @@ public class MainActivity extends Activity {
 		
   	}
 	private void load_cdn(){
-		ArrayList<String> left = new ArrayList<String>();
-		ArrayList<String> right = new ArrayList<String>();
+		  left = new ArrayList<String>();
+		 right = new ArrayList<String>();
 		 int count = 0;
 		 Boolean check=false;
 	        while (count < url_array.size()) {

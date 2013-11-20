@@ -56,8 +56,7 @@ public class List_adapter extends ArrayAdapter<String>{
 			aq.id(holder.itemImage).progress(R.id.progress).image("http://www.wooplr.com/serve?blob-key="+item, true, true, 0, 0, new BitmapAjaxCallback(){//using android query and setting progress bar also
 	        @Override
 	        public void callback(String url, ImageView iv, Bitmap bm, AjaxStatus status){
-	        	  Log.i("status ",status.getMessage()+"");
- 
+  
  	    	  setimage(bm, iv);
 
 	        

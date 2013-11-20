@@ -23,7 +23,8 @@
         android:layout_weight="1"
          android:scrollbars="none"
              android:paddingLeft="5dp"
-         android:paddingRight="10dp"  >
+         android:paddingRight="10dp"  
+>
     </ListView>
 
 </LinearLayout>
