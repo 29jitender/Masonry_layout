@@ -111,8 +111,7 @@ public class MainActivity extends Activity {
 	        		        	
  	            count++;
 	        }
-			Log.i("key",right.size()+"============"+left.size());
-
+ 
 	 
  
 		

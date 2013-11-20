@@ -32,8 +32,7 @@ public class List_adapter extends ArrayAdapter<String>{
         this.layoutResourceId = layoutResourceId;
         
         float width = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
-        float margin = (int)dpTopx(10f, (Activity)context);
- 		imageWidth = ((width - (3 * margin)) / 2);
+  		imageWidth = (width  / 2);
     }
 
 	@Override
@@ -75,7 +74,7 @@ public class List_adapter extends ArrayAdapter<String>{
     }
 	
  	private void setimage(Bitmap bitmap, ImageView imageView){
-		
+		//keeping same width and changing height in same ratio
  		float i = ((float) imageWidth) / ((float) bitmap.getWidth());
 		float imageHeight = i * (bitmap.getHeight());
 		FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) imageView.getLayoutParams();
