@@ -45,14 +45,11 @@ public class MainActivity extends Activity implements ScrollViewListener  {
         
     }
     public void onScrollChanged(Customscroll scrollView, int x, int y, int oldx, int oldy) {
-    	// We take the last son in the scrollview
-        View view = (View) scrollView.getChildAt(scrollView.getChildCount() - 1);
+         View view = (View) scrollView.getChildAt(scrollView.getChildCount() - 1);
         int diff = (view.getBottom() - (scrollView.getHeight() + scrollView.getScrollY()));
 
-        // if diff is zero, then the bottom has been reached
-        if (diff == 0) {
-        		Log.i("this is the end","end");
-        		url_array.addAll(url_array);
+         if (diff == 0) {
+         		url_array.addAll(url_array);
         	//	additem();
         		
         }
@@ -61,7 +58,7 @@ public class MainActivity extends Activity implements ScrollViewListener  {
     public void additem(){
     	 for (int i = 0; i < url_array.size(); i++) {
              View column = getColumnView(i);
-             if (i % 2 == 0) {
+               if (i % 2 == 0) {
                  left.addView(column);
              } else {
                  right.addView(column);

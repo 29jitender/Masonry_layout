@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 		load_cdn();		
 		left_list.setOnTouchListener(touchListener);
 		left_list.setOnScrollListener(scrollListener);
+		right_list.setOnScrollListener(scrollListener);
 
 		right_list.setOnTouchListener(touchListener);		
   	}
@@ -80,10 +81,10 @@ OnScrollListener scrollListener = new OnScrollListener() {
 				{
 				Log.i("its the end","hola");
 				
-			    left.addAll(left);
-				right.addAll(right);
- 				leftAdapter.notifyDataSetChanged();		
-  				rightAdapter.notifyDataSetChanged();		
+//			    left.addAll(left);
+//				right.addAll(right);
+// 				leftAdapter.notifyDataSetChanged();		
+//  				rightAdapter.notifyDataSetChanged();		
 
   					}
 				
